@@ -1,6 +1,3 @@
-import org.gradle.api.tasks.testing.logging.TestExceptionFormat
-import org.gradle.api.tasks.testing.logging.TestLogEvent
-
 plugins {
     id("application")
     id("jacoco")
@@ -14,7 +11,7 @@ group = 'hexlet.code'
 
 version = '1.0-SNAPSHOT'
 
-application { mainClass.set("hexlet.code.Application") }
+application { mainClass.set("hexlet.code.App") }
 
 repositories {
     mavenCentral()
@@ -27,16 +24,13 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
 
-tasks.test {
+test {
     useJUnitPlatform()
-    // https://technology.lastminute.com/junit5-kotlin-and-gradle-dsl/
-    testLogging {
-        exceptionFormat = TestExceptionFormat.FULL
-        events = mutableSetOf(TestLogEvent.FAILED, TestLogEvent.PASSED, TestLogEvent.SKIPPED)
-        // showStackTraces = true
-        // showCauses = true
-        showStandardStreams = true
-    }
+    finalizedBy jacocoTestReport
 }
 
-tasks.jacocoTestReport { reports { xml.required.set(true) } }
+jacocoTestReport {
+    reports {
+        xml.required = true
+    }
+}
