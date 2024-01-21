@@ -1,0 +1,43 @@
+plugins {
+    id 'application'
+    id 'distribution'
+    id 'checkstyle'
+    id 'jacoco'
+    id 'com.github.mrsarm.jshell.plugin' version '1.2.1'
+}
+
+group = 'hexlet.code'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+application {
+    mainClass = 'hexlet.code.App'
+}
+
+run {
+    standardInput = System.in
+}
+
+compileJava {
+    options.release = 20
+}
+
+dependencies {
+    implementation group: 'org.jacoco', name: 'org.jacoco.core', version: '0.8.10'
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.24.2'
+    testImplementation(platform("org.junit:junit-bom:5.10.0"))
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+    }
+}
+
+test {
+    finalizedBy jacocoTestReport
+    useJUnitPlatform()
+}
