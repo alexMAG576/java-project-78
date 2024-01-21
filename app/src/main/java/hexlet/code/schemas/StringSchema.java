@@ -1,7 +1,7 @@
-package app.src.main.java.hexlet.code;
-
+package hexlet.code.schemas;
 
 public final class StringSchema extends BaseSchema<Object> {
+
     public StringSchema() {
         addCheck("isAllowedAndEmpty", s -> (s != null) && (!required || !s.equals("")));
         addCheck("isString", s -> s instanceof String);

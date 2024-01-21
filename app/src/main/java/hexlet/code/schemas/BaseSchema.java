@@ -1,8 +1,13 @@
-package app.src.main.java.hexlet.code;
+package hexlet.code.schemas;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Predicate;
+/**
+ * This is a parent class for validation schemas.
+ * @param <T> is type of the object to be validates. It supports int, String and Map objects.
+ */
 public abstract class BaseSchema<T> {
     protected boolean required;
     protected Map<String, Predicate<T>> checks = new LinkedHashMap<>();

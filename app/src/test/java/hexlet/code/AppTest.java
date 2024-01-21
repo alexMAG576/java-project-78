@@ -1,9 +1,12 @@
-package app.src.test.java;
+package hexlet.code;
 
-import app.src.main.java.hexlet.code.Validator;
-import app.src.main.java.hexlet.code.*;
+import hexlet.code.Validator;
+import hexlet.code.schemas.BaseSchema;
+import hexlet.code.schemas.StringSchema;
+import hexlet.code.schemas.NumberSchema;
+import hexlet.code.schemas.MapSchema;
 import org.junit.jupiter.api.Test;
-
+import static org.assertj.core.api.Assertions.assertThat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +21,7 @@ public class AppTest {
         assertThat(schema.isValid(null)).isFalse();
         assertThat(schema.isValid("")).isFalse();
     }
+
     @Test
     public void stingsRestrictionsTest() {
         Validator v = new Validator();
